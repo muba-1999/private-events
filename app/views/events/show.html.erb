@@ -1,0 +1,44 @@
+<div class="section">
+  <div class="container">
+    <div class="columns is-centered">
+      <div class="column is-half">
+        
+        <%= render @event %>
+      </div>
+    </div>
+  </div>
+</div>
+
+<div class="column">
+  <nav class="navbar is-fixed-button">
+    <div class="navbar-menu">
+      <div class="navbar-item">
+        <div class="field is-grouped">
+          <p class="control">
+             <%= link_to 'Back', root_path, class: "button is-dark" %>
+          </p>
+
+          <% if current_user == @event.creator %>
+            <p class="control">
+               <%= link_to 'Edit', edit_event_path(@event), class: "button is-primary" %>
+            </p>
+
+            <p class="control">
+              <%= link_to "Delete this event", @event, method: :delete, data: {confirm: 'Are you sure you want to delete this event?'}, class: "button is-danger" %>
+            </p>
+          <% elsif !@event.attendees.include?(current_user)%>
+            <p class="control">
+              <%= button_to 'Attend', attendances_path(:user_id => current_user.id, :id => @event.id), class: "button is-primary",method: :post %>
+            </p>
+
+          <% else %>
+            <p class="control">
+              <%= button_to 'Cancel Attendance', attendance_path, method: :delete, data: {confirm: 'Are you sure you want to cancel your attendance to this event?'}, class: "button is-dark" %>
+            </p>
+          <% end %>
+        </div>
+      </div>
+    </div>
+  </nav>
+</div>
+ 

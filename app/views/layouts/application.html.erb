@@ -11,8 +11,19 @@
   </head>
 
   <body>
-    <p class="notice"><%= notice %></p>
-    <p class="alert"><%= alert %></p>
+
+    <% if flash[:notice] %>
+    <div class="notification is-primary global-noification">
+      <p class="notice"><%= notice %></p>
+    </div>
+    <% end %>
+
+    <% if flash[:alert] %>
+      <div class="notification is-danger global-noification">
+        <p class="alert"><%= alert %></p>
+      </div>
+    <% end %>
+    <%= render 'events/navbar' %>
     <%= yield %>
   </body>
 </html>
