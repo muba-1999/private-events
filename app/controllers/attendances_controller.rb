@@ -8,4 +8,5 @@ class AttendancesController < ApplicationController
         @event.attendees << current_user
         flash[:notice] = "Registration was successfull"
         redirect_to root_path
+    end
 end

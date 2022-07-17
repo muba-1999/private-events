@@ -6,11 +6,11 @@ class EventsController < ApplicationController
         @events = Event.all.order("created_at DESC")
     end
 
-    def new
-        @event = Event.new
+    def show
     end
 
-    def show
+    def new
+        @event = current_user.created_events.build
     end
 
     def create
