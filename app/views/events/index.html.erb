@@ -1,53 +1,12 @@
-<div class="section">
-	<h2 class="title is-3">Upcoming Events</h2>
-	<div class="scrolling-wrapper">
-			<div class="columns">
-				<% @events.upcoming.each do |event| %>
-					<div class="column is-3">
-						<%= link_to event, class: "navbar-item" do %>
-							<div class="box">
-								<article class="media">
-									<div class="media-content">
-										<strong><%= event.title %></strong>
-										<p><%= event.description.truncate_words(20) %></p><br>
-										<p class="is-danger"><%= event.date %></p>
-										<small><%= event.location %></small>
-									</div>
-									
-								</article>
-							</div>
-						<% end %>
-					</div>
-				<% end %>
-			</div>
+<section class="section">
+	<div class="container">
+		<div class="columns">
+			<%= render 'upcoming_event'%>
+			<%= render 'past_event'%>
+			<% if user_signed_in? %>
+				<%= render 'attended_event'%>
+			<% end %>
 		</div>
 	</div>
-</div>
-
-
-<div class="section">
-	<h2 class="title is-3">Past Events</h2>
-	<div class="scrolling-wrapper">
-			<div class="columns">
-				<% @events.past.each do |event| %>
-					<div class="column is-3">
-						<%= link_to event, class: "navbar-item" do %>
-							<div class="box">
-								<article class="media">
-									<div class="media-content">
-										<strong><%= event.title %></strong>
-										<p><%= event.description.truncate_words(20) %></p><br>
-										<small><%= event.date %></small><br>
-										<small><%= event.location %></small>
-									</div>
-									
-								</article>
-							</div>
-						<% end %>
-					</div>
-				<% end %>
-			</div>
-		</div>
-	</div>
-</div>
+</section>
 

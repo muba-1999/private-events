@@ -33,12 +33,18 @@
 
           <% else %>
             <p class="control">
-              <%= button_to 'Cancel Attendance', attendance_path, method: :delete, data: {confirm: 'Are you sure you want to cancel your attendance to this event?'}, class: "button is-dark" %>
+              <%= button_to 'Cancel Attendance', attendance_path, method: :delete, data: {confirm: 'Are you sure you want to cancel your attendance to this event?'}, class: "button is-danger" %>
             </p>
           <% end %>
         </div>
       </div>
     </div>
   </nav>
+    <br><br>
+    <h2 class="content is-large">Registered Users for the Event</h2>
+    <% @event.attendees.each do | attendee| %>
+        <strong><%= attendee.username %></strong>
+    <% end %>
+
 </div>
  
